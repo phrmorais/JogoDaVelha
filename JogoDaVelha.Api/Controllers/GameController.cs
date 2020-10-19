@@ -27,7 +27,7 @@ namespace JogoDaVelha.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get() { return Ok($"Jogo estão ativos:{_jogo.GetAll().Count()}"); }
+        public IActionResult Get() { return Ok($"Jogo estão ativos:{_jogo.Where(c => c.Status != Status.Aberto && c.Status != Status.FimDaPartida).Count()}"); }
 
         [HttpPost]
         public IActionResult Post()
@@ -78,7 +78,7 @@ namespace JogoDaVelha.Api.Controllers
                 return BadRequest(new MsgResponse("Partida aguardando segundo jogador"));
 
             if (jogoAtual.Status == Status.FimDaPartida)
-                return BadRequest(new MsgResponse("Partida não encontrada"));
+                return BadRequest(new MsgResponse("Partida Finalizada"));
 
             if (jogoAtual.Status == Status.VezDeO && movimento.Jogador == Opcao.X || jogoAtual.Status == Status.VezDeX && movimento.Jogador == Opcao.O)
                 return BadRequest(new MsgResponse("Não é turno do jogador"));
