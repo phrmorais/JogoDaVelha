@@ -29,11 +29,13 @@ reposta:
 Faz as movimentações de acordo com o indexacao de matrix enviada;
 
 Validacoes:
+    
     "Movimento não informado": O corpo não foi enviado para a requisicao
     "Movimento fora do tabuleiro": A indexacao estáva fora dos valores permitidos
     "movimento diferente do Id da URI": o ID da url e o Id que é enviado no corpo estão diferentes
     "Partida não encontrada": O id não retornou uma partida valida
-    "Partida aguardando segundo jogador": Somente um jogador acessou a plataforma, execute um post para /game novamente para continuar
+    "Partida aguardando segundo jogador": Somente um jogador acessou a plataforma, execute um post para /game novamente 
+    para continuar
     "Partida não finalizada": A partida foi encerrada em outro momento
     "Não é turno do jogador": O outro jogador ainda nao realizou a jogada.
     "Movimento já executado": o movimento tentou sobrescrever um item que já havia sido escolhido.
