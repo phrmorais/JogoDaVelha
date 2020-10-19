@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JogoDaVelha.Biblioteca\JogoDaVelha.Biblioteca.csproj" />
     <ProjectReference Include="..\JogoDaVelha.Repositorio\JogoDaVelha.Repositorio.csproj" />
   </ItemGroup>
 

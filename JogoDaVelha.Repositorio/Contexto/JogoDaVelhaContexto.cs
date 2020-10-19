@@ -11,6 +11,11 @@ namespace JogoDaVelha.Repositorio.Contexto
 
         public DbSet<Jogo> Jogos { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging(true);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new Config.JogoConfiguracao());

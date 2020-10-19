@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace JogoDaVelha.Dominio.Enumerados
+﻿namespace JogoDaVelha.Dominio.Enumerados
 {
     public enum Opcao
     {
+        Vazio,
         X,
         O,
-        Vazio
+        Empate
     }
 }
