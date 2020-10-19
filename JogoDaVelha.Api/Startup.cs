@@ -1,4 +1,6 @@
 using JogoDaVelha.Dominio.Contrato;
+using JogoDaVelha.Repositorio.Contexto;
+using JogoDaVelha.Repositorio.Repositorios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
