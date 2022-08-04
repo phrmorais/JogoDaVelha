@@ -26,6 +26,15 @@ namespace JogoDaVelha.Api
             services.AddDbContext<JogoDaVelhaContexto>(opt => opt.UseInMemoryDatabase("JogoDaVelhaDB"));
             services.AddScoped(typeof(IBaseRepositorio<>), typeof(BaseRepositorio<>));
             services.AddMvc();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "Place Info Service API",
+                    Version = "v1",
+                    Description = "Sample service",
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,15 +45,19 @@ namespace JogoDaVelha.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
             });
         }
     }

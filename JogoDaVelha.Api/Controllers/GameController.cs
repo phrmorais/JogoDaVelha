@@ -3,6 +3,7 @@ using JogoDaVelha.Dominio.DTO;
 using JogoDaVelha.Dominio.Entidade;
 using JogoDaVelha.Dominio.Enumerados;
 using JogoDaVelha.Dominio.Modelo;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -11,8 +12,8 @@ using System.Threading.Tasks;
 namespace JogoDaVelha.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class GameController : Controller
+    [Route("api/[controller]")]
+    public class GameController : ControllerBase
     {
         private readonly IBaseRepositorio<Jogo> _jogo;
 
@@ -21,13 +22,10 @@ namespace JogoDaVelha.Api.Controllers
             _jogo = jogo;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
-        public IActionResult Get() { return Ok($"Jogo estão ativos:{_jogo.Where(c => c.Status != Status.Aberto && c.Status != Status.FimDaPartida).Count()}"); }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult GetGames() { return Ok($"Jogo estão ativos:{_jogo.Where(c => c.Status != Status.Aberto && c.Status != Status.FimDaPartida).Count()}"); }
 
         [HttpPost]
         public IActionResult Post()

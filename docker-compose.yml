@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  jogodavelha.api:
+    image: ${DOCKER_REGISTRY-}jogodavelhaapi
+    build:
+      context: .
+      dockerfile: JogoDaVelha.Api/Dockerfile
