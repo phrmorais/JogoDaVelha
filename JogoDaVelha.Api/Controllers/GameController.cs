@@ -28,6 +28,8 @@ namespace JogoDaVelha.Api.Controllers
         public IActionResult GetGames() { return Ok($"Jogo estão ativos:{_jogo.Where(c => c.Status != Status.Aberto && c.Status != Status.FimDaPartida).Count()}"); }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Post()
         {
             lock (this)
@@ -57,8 +59,10 @@ namespace JogoDaVelha.Api.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("{id}/movement")]
-        public async Task<IActionResult> movement(Guid id, [FromBody] MovimentoDTO movimento)
+        public async Task<IActionResult> movement(Guid id, MovimentoDTO movimento)
         {
             if (movimento == null) return BadRequest(new MsgResponse("Movimento não informado"));
             if (movimento.Position.X < 0 || movimento.Position.X > 2 || movimento.Position.Y < 0 || movimento.Position.Y > 2)
